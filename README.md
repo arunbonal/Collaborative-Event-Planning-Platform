@@ -1,16 +1,17 @@
-# TOPIC : tourism management system
+# TOPIC : collaborative event planning platform
 
 # ENTITIES
 - User
-- Tour Package
-- Destination
-- Booking
-- Accomodation
-- Attractions
-- Transport
-- Review
-- Payment
-- Travel Guide/Agent
+- Guests
+- Venue
+- Event
+- Package (how grand?)
+- Vendor
+- Staff
+- Expenses
+- Feedback
+- Registration
+- Ticket
 
 # Attributes of each entity
 - USER
@@ -18,26 +19,64 @@
     - name
     - email
     - phone
-    - address
-    - user type (tourist, travel agent)
     - password
 
-- TOUR PACKAGE
+- GUESTS
+    - guest id (primary key)
+    - name
+    - event id (foreign key)
+
+- VENUE
+    - venue id
+    - venue name
+    - location
+    - description
+
+- EVENT
+    - event id (primary key)
+    - event type
+    - event title
+    - event description
+    - event date with starting and ending time (composite attribute)
+    - event location
+    - user id (foreign key)
+    - event status
+    - registration amount (only for paid events)
+
+- PACKAGE
     - package id
     - package name
     - description
-    - destination
+    - venue
     - duration
     - price
     - itenary
-    - category (family, adventure, couple)
 
-- DESTINATION
-    - destination id
-    - destination name
-    - location
-    - description
-    - best time to visit
+- VENDOR
+    - vendor id
+    - vendor name
+    - vendor phone
+    - service type
+    - rating
+
+- STAFF
+    - staff id (primary key)
+    - staff name
+    - staff phone
+    - event id (foreign key)
+
+- FINANCE
+    - vendor cost
+    - event income
+    - profit
+
+- FEEDBACK
+    - feedback id
+    - event id
+    - user id
+    - rating
+    - comments
+    - date of feedback
 
 - BOOKING
     - booking id
@@ -49,51 +88,19 @@
     - total price
     - status (confirmed, pending, canceled)
 
-- ACCOMODATION
-    - accomodation id
-    - accomodation name
-    - type (hotel, resort, hostel)
-    - location
-    - price per night
-    - rating
+- REGISTRATION
+    - registration id
+    - guest id
+    - guest name
+    - guest phone
+    - event id
+    - registered Date
+    - resgistration amount
+    - payment status
 
-- ATTRACTION
-    - attraction id
-    - attraction name
-    - description
-    - attraction type (natural, cultural, historical)
-    - location
-    - entry fee
-
-- TRANSPORT
-    - transport id
-    - transport type (flight, bus, train, car rental)
-    - provider
-    - price (/hr or /km)
-
-- REVIEW
-    - review id
-    - user id
-    - package id
-    - rating
-    - comments
-    - review date
-
-- PAYMENT
-    - payment id
-    - booking id
-    - user id
-    - payment date
-    - amount
-    - payment method (card, upi...)
-    - status (successful, pending, failed)
-
-- TRAVEL AGENT/GUIDE
-    - agent id
-    - agent name
-    - agent phone
-    - agency name
-    - commission rate
-
-# RELATIONSHIPS OF ENTITIES
-
+- TICKET
+    - ticket id
+    - event id
+    - guest id
+    - ticket type (only for paid events)
+    - price
