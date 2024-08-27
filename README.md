@@ -78,16 +78,6 @@
     - comments
     - date of feedback
 
-- BOOKING
-    - booking id
-    - user id
-    - package id
-    - booking date
-    - travel date
-    - number of people
-    - total price
-    - status (confirmed, pending, canceled)
-
 - REGISTRATION
     - registration id
     - guest id
