@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Guest</title>
+</head>
+<body>
+    <h1>Add New Guest</h1>
+    <form action="/guest" method="POST">
+        <div>
+            <label for="name">Guest Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        
+        <div>
+            <label for="event_id">Event</label>
+            <select id="event_id" name="event_id" required>
+                <% events.forEach(event => { %>
+                    <option value="<%= event.event_id %>"><%= event.title %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <button type="submit">Add Guest</button>
+    </form>
+</body>
+</html>

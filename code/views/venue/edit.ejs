@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Venue Details</title>
+</head>
+<body>
+    <h2>You are about to edit this venue: <%= venue.name %></h2>
+    <form action="/venue/<%= venue.venue_id %>?_method=PATCH" method="post">
+        <label for="name">Venue Name:</label>
+        <textarea name="name" id="name"><%= venue.name %></textarea><br><br>
+        
+        <label for="location">Location:</label>
+        <textarea name="location" id="location"><%= venue.location %></textarea><br><br>
+        
+        <label for="description">Description:</label>
+        <textarea name="description" id="description"><%= venue.description %></textarea><br><br>
+        
+        <button type="submit">Edit Venue</button>
+    </form>
+</body>
+</html>

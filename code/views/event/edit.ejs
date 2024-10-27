@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+</head>
+<body>
+    <h2>Edit Event: <%= event.title %></h2>
+    <form action="/event/<%= event.event_id %>?_method=PATCH" method="post">
+        <label>Type:</label>
+        <select name="type">
+            <option value="Conference" <%= event.type === 'Conference' ? 'selected' : '' %>>Conference</option>
+            <option value="Workshop" <%= event.type === 'Workshop' ? 'selected' : '' %>>Workshop</option>
+            <option value="Seminar" <%= event.type === 'Seminar' ? 'selected' : '' %>>Seminar</option>
+            <option value="Meetup" <%= event.type === 'Meetup' ? 'selected' : '' %>>Meetup</option>
+        </select><br>
+
+        <label>Title:</label>
+        <input type="text" name="title" value="<%= event.title %>"><br>
+
+        <label>Description:</label>
+        <textarea name="description"><%= event.description %></textarea><br>
+
+        <label>Start Time:</label>
+        <input type="datetime-local" name="start_time" value="<%= event.start_time.toISOString().slice(0, 16) %>"><br>
+
+        <label>End Time:</label>
+        <input type="datetime-local" name="end_time" value="<%= event.end_time.toISOString().slice(0, 16) %>"><br>
+
+        <label>Venue:</label>
+        <select name="venue_id">
+            <% venues.forEach(venue => { %>
+                <option value="<%= venue.venue_id %>" <%= event.venue_id === venue.venue_id ? 'selected' : '' %>><%= venue.name %></option>
+            <% }) %>
+        </select><br>
+
+        <label>Owner:</label>
+        <select name="owner_id">
+            <% users.forEach(user => { %>
+                <option value="<%= user.user_id %>" <%= event.owner_id === user.user_id ? 'selected' : '' %>><%= user.name %></option>
+            <% }) %>
+        </select><br>
+
+        <label>Status:</label>
+        <input type="checkbox" name="event_status" <%= event.event_status ? 'checked' : '' %>><br>
+
+        <button type="submit">Update Event</button>
+    </form>
+</body>
+</html>

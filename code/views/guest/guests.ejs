@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guests</title>
+</head>
+<body>
+    <h1>Guests</h1>
+    
+    <!-- Add Guest Button -->
+    <a href="/guest/new">Add Guest</a>
+    
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Guest ID</th>
+                <th>Name</th>
+                <th>Event Title</th>
+                <th>Event Owner</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% guests.forEach(guest => { %>
+                <tr>
+                    <td><%= guest.guest_id %></td>
+                    <td><%= guest.guest_name %></td>
+                    <td><%= guest.event_title %></td>
+                    <td><%= guest.owner_name %></td>
+                    <td>
+                        <a href="/guest/<%= guest.guest_id %>/edit">Edit</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

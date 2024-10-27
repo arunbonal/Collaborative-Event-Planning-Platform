@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendors</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        a, form {
+            margin: 0 5px;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vendors</h1>
+    <a href="/vendor/new">Add New Vendor</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Vendor ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Service Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% vendors.forEach(vendor => { %>
+                <tr>
+                    <td><%= vendor.vendor_id %></td>
+                    <td><%= vendor.name %></td>
+                    <td><%= vendor.phone %></td>
+                    <td><%= vendor.service_type %></td>
+                    <td>
+                        <a href="/vendor/<%= vendor.vendor_id %>/edit">Edit</a>
+                        <form action="/vendor?_method=DELETE" method="POST" style="display:inline;">
+                            <input type="hidden" name="vendor_id" value="<%= vendor.vendor_id %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

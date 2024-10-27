@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Vendor</title>
+</head>
+<body>
+    <h1>Edit Vendor</h1>
+    <form action="/vendor/<%= vendor.vendor_id %>?_method=PATCH" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= vendor.name %>" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" value="<%= vendor.phone %>" required>
+
+        <label for="service_type">Service Type:</label>
+        <select id="service_type" name="service_type">
+            <% serviceTypes.forEach(type => { %>
+                <option value="<%= type %>" <%= vendor.service_type === type ? 'selected' : '' %>><%= type %></option>
+            <% }); %>
+        </select>
+
+        <button type="submit">Update Vendor</button>
+    </form>
+</body>
+</html>

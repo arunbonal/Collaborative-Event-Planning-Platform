@@ -1,0 +1,10 @@
+mysql -u root -p to link mysql and CLI
+
+Forming a mysql connection:
+const mysql = require('mysql2');
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'delta_app',
+    password: "Arun@6104"
+});

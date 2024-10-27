@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        button {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Events</h1>
+    <form action="/event/new" method="get">
+        <button>Create new event</button>
+    </form>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Event ID</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Venue</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% events.forEach(event => { %>
+                <tr>
+                    <td><%= event.event_id %></td>
+                    <td><%= event.title %></td>
+                    <td><%= event.type %></td>
+                    <td><%= event.description %></td>
+                    <td><%= new Date(event.start_time).toLocaleString() %></td>
+                    <td><%= new Date(event.end_time).toLocaleString() %></td>
+                    <td><%= event.venue_name %></td>
+                    <td><%= event.owner_name %></td>
+                    <td><%= event.event_status ? 'Pending' : 'Fulfilled' %></td>
+                    <td>
+                        <form action="/event/<%= event.event_id %>/edit" method="get" style="display: inline;">
+                            <button>Edit</button>
+                        </form>
+                        <form action="/event/<%= event.event_id %>?_method=DELETE" method="post" style="display: inline;">
+                            <button>Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

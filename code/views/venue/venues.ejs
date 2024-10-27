@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venues</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+        a, form {
+            margin: 0 5px;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>Venue Info (<%= venues.length %>)</h2>
+    <form action="/venue/new" method="get">
+        <button>+ Add new venue</button>
+    </form><br><br>
+    <table>
+        <tr>
+            <th>Venue ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Options</th>
+        </tr>
+        <% for (let venue of venues) { %>
+            <tr>
+                <td><%= venue.venue_id %></td>
+                <td><%= venue.name %></td>
+                <td><%= venue.location %></td>
+                <td><%= venue.description %></td>
+                <td>
+                    <!-- Edit link -->
+                    <a href="/venue/<%= venue.venue_id %>/edit">Edit</a>
+                    
+                    <!-- Delete form with hidden method override -->
+                    <form action="/venue/<%= venue.venue_id %>?_method=DELETE" method="post" onsubmit="return confirm('Are you sure you want to delete this venue?');">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

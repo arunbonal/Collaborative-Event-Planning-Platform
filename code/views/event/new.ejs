@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Add New Event</h1>
+        <form action="/event" method="POST">
+            <div class="form-group">
+                <label for="type">Event Type</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="Conference">Conference</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Seminar">Seminar</option>
+                    <option value="Meetup">Meetup</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">Event Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Event Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="start_time">Start Time</label>
+                <input type="datetime-local" class="form-control" id="start_time" name="start_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="end_time">End Time</label>
+                <input type="datetime-local" class="form-control" id="end_time" name="end_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="venue_id">Venue</label>
+                <select class="form-control" id="venue_id" name="venue_id" required>
+                    <% venues.forEach(venue => { %>
+                        <option value="<%= venue.venue_id %>"><%= venue.name %> - <%= venue.location %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="owner_id">Owner</label>
+                <select class="form-control" id="owner_id" name="owner_id" required>
+                    <% users.forEach(user => { %>
+                        <option value="<%= user.user_id %>"><%= user.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="event_status" name="event_status" checked>
+                <label class="form-check-label" for="event_status">Event Active</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Event</button>
+        </form>
+    </div>
+</body>
+</html>

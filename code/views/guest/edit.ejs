@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Guest</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Edit Guest</h1>
+        <form action="/guest/<%= guest.guest_id %>?_method=PATCH" method="POST">
+            <div class="form-group">
+                <label for="name">Guest Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= guest.name %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="event_id">Event</label>
+                <select class="form-control" id="event_id" name="event_id" required>
+                    <% events.forEach(event => { %>
+                        <option value="<%= event.event_id %>" <%= guest.event_id === event.event_id ? "selected" : "" %>><%= event.title %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Guest</button>
+        </form>
+    </div>
+</body>
+</html>
