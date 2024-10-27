@@ -1,0 +1,8 @@
+HOW TO RUN
+
+find the green button 'Code', click on it and download ZIP
+once downloaded, open it on VS code and enter 'code' folder
+enter into the code folder in the terminal by running 'cd code'
+now to install packages, run 'npm install'
+to start the project, run 'nodemon index.js'
+now go to google chrome and type 'localhost:8080/' and the page will render
